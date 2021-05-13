@@ -301,6 +301,19 @@ class OrderBookTest {
         assertEquals(TEN, orderBook.getVwapForQuantityAndSide(1, side));
     }
 
+    @Test
+    void should_remove_data__on_reset() {
+        // given
+        givenInitialMarketDataSet();
+
+        // when
+        orderBook.reset();
+
+        // given
+        assertTrue(orderBook.getOrdersBySide(BUY).isEmpty());
+        assertTrue(orderBook.getOrdersBySide(SELL).isEmpty());
+    }
+
     private void givenInitialMarketDataSet() {
         var marketData1 = new MarketData(
                 "participant1",
